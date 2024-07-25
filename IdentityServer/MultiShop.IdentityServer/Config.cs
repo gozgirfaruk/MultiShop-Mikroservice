@@ -4,7 +4,6 @@
 
 using IdentityServer4;
 using IdentityServer4.Models;
-using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
 namespace MultiShop.IdentityServer
@@ -30,7 +29,6 @@ namespace MultiShop.IdentityServer
         {
             new ApiScope("CatalogFullPermisson","Full authority for catalog operations"),
             new ApiScope("CatalogReadPermission","Reading authority for catalog operations"),
-
             new ApiScope("DiscountFullPermission","Full authority for discount operations "),
             new ApiScope("OrderFullPermission","Full authority for Order operations "),
             new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
