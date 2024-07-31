@@ -1,0 +1,63 @@
+﻿@model List<ResultCategoryDto>
+@{
+    ViewData["Title"] = "CategoryList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Data Tables</h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Ana Sayfa</a></li>
+            <li class="active"><i class="fa fa-envelope-o"></i> Tablolar</li>
+            <li class="active"><i class="fa fa-table"></i> Kategori Listesi</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>Kategori Listesi</h4>
+                    <div id="example_filter" class="dataTables_filter pull-right">
+                        <a href="/Admin/Category/CreateCategory/" class="btn btn-default">Yeni Kategori Girişi</a>
+                    </div>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="sortable">ID</th>
+                                <th class="sortable">Kategory Adı</th>
+                                <th class="sortable">Kategori Ürünleri</th>
+                            </tr>
+                        </thead>
+                        @foreach(var item in Model)
+                        {
+                               <tr>
+                            <td class="text-truncate">MS-@item.CategoryID</td>
+                            <td class="text-truncate">@item.@item.CategoryName</td>
+                            <td class="text-truncate"><a href="#" class="btn btn-outline-secondary">Git</a></td>
+                            <td><a href="/Admin/Category/UpdateCategory/@item.CategoryID" class="btn btn-outline-warning">Güncelle</a></td>
+                            <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID" class="btn btn-outline-Danger">Sil</a></td>
+                        </tr>
+                        }
+                     
+                
+                    </table>
+                    <ul class="pagination m-bot-0">
+                        <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">«</span> </a> </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li> <a href="#" aria-label="Next"> <span aria-hidden="true">»</span> </a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- content -->
+</div>
+
