@@ -1,10 +1,15 @@
+using MultiShop.WebUi.Services.CarouselServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<ICarouselService, CarouselService>();
 var app = builder.Build();
 
+builder.Services.AddHttpClient();
+    
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

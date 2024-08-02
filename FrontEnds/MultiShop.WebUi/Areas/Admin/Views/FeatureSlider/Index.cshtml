@@ -1,6 +1,6 @@
-﻿@model List<ResultCategoryDto>
+﻿@model List<GetFeatureSliderDto>
 @{
-    ViewData["Title"] = "CategoryList";
+    ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     int count = 0;
 }
@@ -8,11 +8,11 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-  <h1>Kategoriler</h1>
+        <h1>Öne Çıkanlar</h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Ana Sayfa</a></li>
             <li class="active"><i class="fa fa-envelope-o"></i> Tablolar</li>
-            <li class="active"><i class="fa fa-table"></i> Kategori Listesi</li>
+            <li class="active"><i class="fa fa-table"></i> Öne Çıkanlar </li>
         </ol>
     </section>
 
@@ -23,30 +23,31 @@
                 <div class="chart-box">
                     <h4>Kategori Listesi</h4>
                     <div id="example_filter" class="dataTables_filter pull-right">
-                        <a href="/Admin/Category/CreateCategory/" class="btn btn-default">Yeni Kategori Girişi</a>
+                        <a href="/Admin/FeatureSlider/CreateFeatureSlider/" class="btn btn-default">Yeni Görsel Ekle</a>
                     </div>
                     <table class="table table-responsive">
                         <thead>
                             <tr>
                                 <th class="sortable">ID</th>
-                                <th class="sortable">Kategory Adı</th>
-                                <th class="sortable">Kategori Ürünleri</th>
+                                <th class="sortable">Görsel</th>
+                                <th class="sortable">Görsel Başlığı</th>
                             </tr>
                         </thead>
-                        @foreach(var item in Model)
+                        @foreach (var item in Model)
                         {
                             count++;
                             <tr>
-                                   
-                            <td class="text-truncate">@count</td>
-                            <td class="text-truncate">@item.CategoryName</td>
-                            <td class="text-truncate"><a href="#" class="btn btn-primary">Git</a></td>
-                            <td><a href="/Admin/Category/UpdateCategory/@item.CategoryID" class="btn btn-warning">Güncelle</a></td>
-                            <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
-                        </tr>
+
+                                <td class="text-truncate">@count</td>
+                                <td class="text-truncate"><img src="@item.ImageUrl" style="width:60px; height:60px; border-radius:10px;"/></td>
+                                <td class="text-truncate">@item.Title</td>
+                                <td class="text-truncate"><a href="#" class="btn btn-primary">Açıklama</a></td>
+                                <td><a href="/Admin/FeatureSlider/UpdateFeatureSlider/@item.FeatureSliderId" class="btn btn-warning">Güncelle</a></td>
+                                <td><a href="/Admin/FeatureSlider/DeleteFeatureSlider/@item.FeatureSliderId" class="btn btn-danger">Sil</a></td>
+                            </tr>
                         }
-                     
-                
+
+
                     </table>
                     <ul class="pagination m-bot-0">
                         <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">«</span> </a> </li>

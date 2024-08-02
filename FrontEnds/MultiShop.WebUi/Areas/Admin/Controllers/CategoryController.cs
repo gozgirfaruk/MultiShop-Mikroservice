@@ -8,7 +8,7 @@ namespace MultiShop.WebUi.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [AllowAnonymous]
-    [Route("Admin/Category/[action]")]
+    [Route("Admin/[controller]/[action]")]
     public class CategoryController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -18,6 +18,7 @@ namespace MultiShop.WebUi.Areas.Admin.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
+        //[Route("CategoryList")]
         public async Task<IActionResult> CategoryList()
         {
             var client = _httpClientFactory.CreateClient();
@@ -33,20 +34,23 @@ namespace MultiShop.WebUi.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        //[Route("CreateCategory")]
         public IActionResult CreateCategory()
         {
             return View();
         }
         [HttpPost]
+        //[Route("CreateCategory")]
         public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategory)
         {
+            
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createCategory); 
             StringContent content = new StringContent(jsonData,Encoding.UTF8,"application/json");
             var responseMessage = await client.PostAsync("http://localhost:7186/api/Categories", content);
             if (responseMessage.IsSuccessStatusCode) 
             {
-                return RedirectToAction("CategoryList", new {area="Admin"});
+                return RedirectToAction("CategoryList");
             }
             return View();
         }
@@ -57,7 +61,7 @@ namespace MultiShop.WebUi.Areas.Admin.Controllers
             var responseMessage = await client.DeleteAsync($"http://localhost:7186/api/Categories?id={id}");
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("CateogoryList",new {area="Admin"});
+                return RedirectToAction("CategoryList");
             }
             return View();
         }
@@ -77,6 +81,7 @@ namespace MultiShop.WebUi.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [Route("{id}")]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryDto dto)
         {
             var client = _httpClientFactory.CreateClient();
@@ -85,7 +90,7 @@ namespace MultiShop.WebUi.Areas.Admin.Controllers
             var responseMessage = await client.PutAsync("http://localhost:7186/api/Categories", content);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("CategoryList","Category", new { area = "Admin" });
+                return RedirectToAction("CategoryList");
             }
             return View();
         }

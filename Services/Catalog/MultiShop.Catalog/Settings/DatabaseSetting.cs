@@ -6,6 +6,7 @@
         public string ProductCollection { get; set; }
         public string ProductImageCollection { get; set; }
         public string ProductPreviewCollection { get; set; }
+        public string FeatureSliderCollection { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
 
