@@ -1,18 +1,19 @@
-﻿@model List<GetFeatureSliderDto>
+﻿@model List<ResultFeatureDto>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "FeatureList";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     int count = 0;
 }
 
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Özel Teklifler</h1>
+        <h1>Kategoriler</h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Ana Sayfa</a></li>
             <li class="active"><i class="fa fa-envelope-o"></i> Tablolar</li>
-            <li class="active"><i class="fa fa-table"></i> Özel Teklifler </li>
+            <li class="active"><i class="fa fa-table"></i> Öne Çıkan Listesi</li>
         </ol>
     </section>
 
@@ -21,16 +22,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="chart-box">
-                    <h4>Özel Teklif Listesi</h4>
+                    <h4>Öne Çıkan Listesi</h4>
                     <div id="example_filter" class="dataTables_filter pull-right">
-                        <a href="/Admin/FeatureSlider/CreateFeatureSlider/" class="btn btn-default">Yeni Teklif Ekle</a>
+                        <a href="/Admin/Feature/CreateFeature/" class="btn btn-default">Yeni Öne Çıkan Girişi</a>
                     </div>
                     <table class="table table-responsive">
                         <thead>
                             <tr>
                                 <th class="sortable">ID</th>
-                                <th class="sortable">Görsel</th>
-                                <th class="sortable">Görsel Başlığı</th>
+                                <th class="sortable">Öne Çıkan Başlık</th>
+                                <th class="sortable">İcon</th>
                             </tr>
                         </thead>
                         @foreach (var item in Model)
@@ -39,11 +40,10 @@
                             <tr>
 
                                 <td class="text-truncate">@count</td>
-                                <td class="text-truncate"><img src="@item.ImageUrl" style="width:60px; height:60px; border-radius:10px;"/></td>
                                 <td class="text-truncate">@item.Title</td>
-                                <td class="text-truncate"><a href="#" class="btn btn-primary">Açıklama</a></td>
-                                <td><a href="/Admin/FeatureSlider/UpdateFeatureSlider/@item.FeatureSliderId" class="btn btn-warning">Güncelle</a></td>
-                                <td><a href="/Admin/FeatureSlider/DeleteFeatureSlider/@item.FeatureSliderId" class="btn btn-danger">Sil</a></td>
+                                <td class="text-truncate"><h1 class="fa-regular @item.Icon text-primary m-0 mr-2"></h1></td>
+                                <td><a href="/Admin/Feature/UpdateFeature/@item.FeatureId" class="btn btn-warning">Güncelle</a></td>
+                                <td><a href="/Admin/Feature/DeleteFeature/@item.FeatureId" class="btn btn-danger">Sil</a></td>
                             </tr>
                         }
 
@@ -64,4 +64,6 @@
     </section>
     <!-- content -->
 </div>
+
+
 
