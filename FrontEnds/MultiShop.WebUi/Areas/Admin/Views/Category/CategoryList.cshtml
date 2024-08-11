@@ -29,7 +29,7 @@
                         <thead>
                             <tr>
                                 <th class="sortable">ID</th>
-                                <th class="sortable">Kategory Adı</th>
+                                <th class="sortable">Kategori</th>
                                 <th class="sortable">Kategori Ürünleri</th>
                             </tr>
                         </thead>
@@ -39,7 +39,8 @@
                             <tr>
                                    
                             <td class="text-truncate">@count</td>
-                            <td class="text-truncate">@item.CategoryName</td>
+                            <td class="text-truncate"><img src="@item.ImageUrl" style="height:75px; width:75px; border-radius:15px;"/>
+                           @item.CategoryName</td>
                             <td class="text-truncate"><a href="#" class="btn btn-primary">Git</a></td>
                             <td><a href="/Admin/Category/UpdateCategory/@item.CategoryID" class="btn btn-warning">Güncelle</a></td>
                             <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
