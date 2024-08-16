@@ -22,7 +22,7 @@
                 <div class="chart-box">
                     <h4>Ürün Listesi</h4>
                     <div id="example_filter" class="dataTables_filter pull-right">
-                        <a href="/Admin/Product/CreateProduct/" class="btn btn-default">Yeni Ürün Girişi</a>
+                        <a href="/Admin/Product/CreateProduct/" class="btn" style="color:papayawhip; background-color:dimgray;border-radius:15px;">Yeni Ürün Girişi</a>
                     </div>
                     <table class="table table-responsive">
                         <thead>
@@ -42,11 +42,12 @@
                                 <td class="text-truncate">@count</td>
                                 <td class="text-truncate"><img src="@item.ProductImageUrl" style="height:75px;width:75px; border-radius:15px;"/></td>
                                 <td class="text-truncate">@item.ProductName</td>
-                                <td class="text-truncate">@item.Price</td>
+                                <td class="text-truncate">₺@item.Price</td>
                                 <td class="text-truncate">@item.Category.CategoryName</td>
-                                <td class="text-truncate"><a href="#" class="btn btn-primary">Detay</a></td>
-                                <td><a href="/Admin/Product/UpdateProduct/@item.ProductID" class="btn btn-warning">Güncelle</a></td>
-                                <td><a href="/Admin/Product/DeleteProduct/@item.ProductID" class="btn btn-danger">Sil</a></td>
+                                <td class="text-truncate"><a href="#" class="btn" style="background-color:lightcoral; color:white; border-radius:15px;" >Detay</a></td>
+                                <td><a href="/Admin/ProductImage/ProductImageList/@item.ProductID" class="btn btn-info" style="border-radius:15px;">Ürün Görselleri</a></td>
+                                <td><a href="/Admin/Product/UpdateProduct/@item.ProductID" class="btn btn-warning" style="border-radius:15px;">Güncelle</a></td>
+                                <td><a href="/Admin/Product/DeleteProduct/@item.ProductID" class="btn btn-danger" style="border-radius:15px;">Sil</a></td>
                             </tr>
                         }
 
