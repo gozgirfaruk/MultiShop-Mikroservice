@@ -1,0 +1,53 @@
+﻿@model List<ResultAboutDto>
+@{
+    ViewData["Title"] = "AboutList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Hakkımızda</h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Ana Sayfa</a></li>
+            <li class="active"><i class="fa fa-envelope-o"></i> Tablolar</li>
+            <li class="active"><i class="fa fa-table"></i> Hakkımızda Listesi</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>Hakkımızda Listesi</h4>
+                   
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="sortable">Adres</th>
+                                <th class="sortable">E-Posta</th>
+                                <th class="sortable">Telefon</th>
+                                <th class="sortable">Açıklama</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                           
+                            <tr>
+                              
+                                <td class="text-truncate">@item.Address</td>
+                                <td class="text-truncate">@item.Email</td>
+                                <td class="text-truncate">@item.Phone</td>
+                                <td class="text-truncate">@item.Description</td>
+                               
+                                <td><a href="/Admin/About/UpdateAbout/@item.AboutId" class="btn btn-warning">Güncelle</a></td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- content -->
+</div>

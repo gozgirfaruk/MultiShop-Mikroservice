@@ -4,8 +4,9 @@ namespace MultiShop.WebUi.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Shop()
+        public IActionResult Shop(string id)
         {
+            ViewBag.i = id;
             return View();
         }
 

@@ -1,0 +1,75 @@
+﻿@model List<ResultOfferDiscountDto>
+@{
+    ViewData["Title"] = "OfferDiscountList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Kategoriler</h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Ana Sayfa</a></li>
+            <li class="active"><i class="fa fa-envelope-o"></i> Tablolar</li>
+            <li class="active"><i class="fa fa-table"></i> İndirim Teklifleri</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>İndirim Listesi</h4>
+                    <div id="example_filter" class="dataTables_filter pull-right">
+                        @if(Model.Count == 2)
+                        {
+                            <a href="/Admin/OfferDiscount/OfferDiscountList/" class="btn btn-default">İndirim eklenemez</a>
+                        }
+                        else
+                        {
+                            <a href="/Admin/OfferDiscount/CreateOfferDiscount/" class="btn btn-info">Yeni İndirim Girişi</a>
+                        }
+
+                    </div>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="sortable">ID</th>
+                                <th class="sortable">Başlık</th>
+                                <th class="sortable">Alt Başlık</th>
+                                <th class="sortable">Güncell</th>
+                                <th class="sortable">Sil</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+
+                                <td class="text-truncate">@count</td>
+                                <td class="text-truncate">
+                                    <img src="@item.ImageUrl" style="height:75px; width:75px; border-radius:15px;" />
+                                    @item.Title
+                                </td>
+                                <td class="text-truncate">@item.SubTitle</td>
+                                <td><a href="/Admin/OfferDiscount/UpdateOfferDiscount/@item.OfferDiscountId" class="btn btn-warning">Güncelle</a></td>
+                                <td><a href="/Admin/OfferDiscount/DeleteOfferDiscount/@item.OfferDiscountId" class="btn btn-danger">Sil</a></td>
+                            </tr>
+                        }
+
+
+                    </table>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- content -->
+</div>
+
+
+
