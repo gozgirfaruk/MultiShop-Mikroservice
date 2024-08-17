@@ -1,0 +1,72 @@
+﻿@model GetCommentById
+@{
+    ViewData["Title"] = "GetCommentById";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Tablo İşlemleri</h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Ana Sayfa</a></li>
+            <li class="active"><i class="fa fa-envelope-o"></i> Yorumlar</li>
+            <li class="active"><i class="fa fa-envelope"></i>Güncelleme</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>Gelen Yorum Güncelleme</h4>
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset class="form-group">
+                                    <input type="hidden" asp-for="UserCommentId" />
+                                    <input type="hidden" asp-for="ProductId" />
+                                    <br />
+                                    <label>Kullanıcı Adı</label>
+                                    <input class="form-control" asp-for="NameSurname">
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <br />
+                                    <label>Kullanıcı Görsel</label>
+                                    <input class="form-control"  asp-for="ImageUrl">
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <br />
+                                    <label>E-Mail</label>
+                                    <input class="form-control" asp-for="Email">
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <br />
+                                    <label>Değelendirme Puanı</label>
+                                    <input class="form-control" asp-for="Rating" type="number">
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <br />
+                                    <label>Yorum Tarihi</label>
+                                    <input class="form-control" asp-for="CreatedDate" type="date">
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <br />
+                                    <label>Yorum </label>
+                                  <textarea rows="3" asp-for="CommentDetail" class="form-control"></textarea>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-default">Güncelle</button>
+                        <a href="/Admin/Comment/CommentList" class="btn btn-secondary">Vazgeç</a>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- content -->
+</div>
+

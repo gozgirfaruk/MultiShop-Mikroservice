@@ -1,0 +1,39 @@
+﻿
+@model CreateCommentDto
+
+<div class="col-md-6">
+   
+    <h4 class="mb-4">Deneyiminizi Bizimle Paylaşın</h4>
+    <small>Düşüncelerinizin yayınlanması için geçerli bir e-posta girdiğinizden emin olunuz. *</small>
+   
+    <form method="post" asp-action="AddComment">
+        <div class="d-flex my-3">
+            <p class="mb-0 mr-2">Ürün Puanınız* :</p>
+            <div class="text-primary">
+                <select asp-for="Rating" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="hidden" asp-for="ProductId"/>
+            <label for="message">Yorumunuz*</label>
+            <textarea id="message" cols="30" rows="5" class="form-control" asp-for="CommentDetail"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="name">Adınız*</label>
+            <input type="text" class="form-control" id="name" asp-for="NameSurname">
+        </div>
+        <div class="form-group">
+            <label for="email">E-Posta Adresiniz*</label>
+            <input type="email" class="form-control" id="email" asp-for="Email">
+        </div>
+        <div class="form-group mb-0">
+            <input type="submit" value="Yorum Yap" class="btn btn-primary px-3">
+        </div>
+    </form>
+</div>

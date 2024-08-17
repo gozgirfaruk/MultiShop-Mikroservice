@@ -1,0 +1,23 @@
+﻿@model List<ResultCommentDto>
+
+<div class="col-md-6">
+    <h4 class="mb-4">Ürüne Ait Yorumlar (@Model.Count)</h4>
+    @foreach (var item in Model)
+    {
+        <div class="media mb-4">
+            <img src="@item.ImageUrl" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+            <div class="media-body">
+                <h6>@item.NameSurname<small> - <i>@item.CreatedDate.ToShortDateString()</i></small></h6>
+                <div class="text-primary mb-2">
+                    @for (int i = item.Rating; i > 0; i--)
+                    {
+                        <i class="fas fa-star"></i>
+                    }
+
+                </div>
+                <p>@item.CommentDetail</p>
+            </div>
+        </div>
+    }
+
+</div>
