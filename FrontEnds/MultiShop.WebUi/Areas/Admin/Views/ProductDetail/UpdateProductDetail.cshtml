@@ -1,6 +1,6 @@
-﻿@model GetByIdProductImageDto
+﻿@model GetProductDetailByIdDto
 @{
-    ViewData["Title"] = "ProductImageList";
+    ViewData["Title"] = "UpdateProductDetail";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -10,7 +10,7 @@
         <h1>Tablo İşlemleri</h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Ana Sayfa</a></li>
-            <li class="active"><i class="fa fa-envelope-o"></i> Ürün Görselleri</li>
+            <li class="active"><i class="fa fa-envelope-o"></i> Ürün Detaları</li>
             <li class="active"><i class="fa fa-envelope"></i>Güncelleme</li>
         </ol>
     </section>
@@ -20,33 +20,25 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="chart-box">
-                    <h4>Ürün Görselleri Güncelleme</h4>
+                    <h4>Ürün Bilgileri Güncelleme</h4>
                     <form method="post">
                         <div class="row">
                             <div class="col-md-12">
                                 <fieldset class="form-group">
-
-                                    <input type="hidden" asp-for="ProductImageID" />
-                                    <input type="hidden" asp-for="ProductID" />
+                                    <input type="hidden" asp-for="ProductPreviewID" />
+                                    <br />
+                                    <label>Bilgi</label>
+                                    <textarea asp-for="Info" class="form-control" rows="5"></textarea>
+                                   
                                 </fieldset>
                                 <fieldset class="form-group">
-                                    <label>Ürün Görseli 1</label>
                                     <br />
-                                    <img src="@Model.Image1" style="width:120px; height:120px; border-radius:15px;" />
-                                    <input class="form-control" placeholder="Kategori Adı" asp-for="Image1">
+                                    <label>Açıklama </label>
+                                    <textarea asp-for="Description" class="form-control" rows="5"></textarea>
                                 </fieldset>
                                 <fieldset class="form-group">
-                                    <label>Ürün Görseli 2</label>
                                     <br />
-                                    <img src="@Model.Image2" style="width:120px; height:120px; border-radius:15px;" />
-                                    <input class="form-control" placeholder="Kategori Adı" asp-for="Image2">
-
-                                </fieldset>
-                                <fieldset class="form-group">
-                                    <label>Ürün Görseli 3</label>
-                                    <br />
-                                    <img src="@Model.Image3" style="width:120px; height:120px; border-radius:15px;" />
-                                    <input class="form-control" placeholder="Kategori Görsel" asp-for="Image3">
+                                    <input type="hidden" asp-for="ProductID">
                                 </fieldset>
                             </div>
                         </div>

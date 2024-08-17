@@ -42,6 +42,12 @@ namespace MultiShop.Catalog.Services.ProductPreviewServices
             return _mapper.Map<GetProductPreviewByIdDto>(values);
         }
 
+        public async Task<GetProductPreviewByIdDto> GetProductDetailForProductIdAsync(string id)
+        {
+            var values = await _productPreviewCollection.Find<ProductPreview>(x => x.ProductID == id).FirstOrDefaultAsync();
+            return _mapper.Map<GetProductPreviewByIdDto>(values);
+        }
+
         public async Task UpdateProductPreviewAsync(UpdateProductPreviewDto productPreviewDto)
         {
             var values = _mapper.Map<ProductPreview>(productPreviewDto);

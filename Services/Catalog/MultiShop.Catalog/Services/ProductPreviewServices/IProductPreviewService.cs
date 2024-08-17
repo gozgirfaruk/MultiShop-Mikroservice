@@ -9,5 +9,6 @@ namespace MultiShop.Catalog.Services.ProductPreviewServices
         Task UpdateProductPreviewAsync(UpdateProductPreviewDto productPreviewDto);
         Task DeleteProductPreviewAsync(string id);
         Task<GetProductPreviewByIdDto> GetByIdProductPreviewAsync(string id);
+        Task<GetProductPreviewByIdDto> GetProductDetailForProductIdAsync(string id);
     }
 }

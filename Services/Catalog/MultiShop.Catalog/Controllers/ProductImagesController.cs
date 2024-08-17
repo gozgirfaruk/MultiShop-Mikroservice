@@ -23,10 +23,10 @@ namespace MultiShop.Catalog.Controllers
             return Ok(values);
         }
 
-        [HttpGet("GetProductImageById/{productId}")]
-        public async Task<IActionResult> GetProductImageById(string productId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProductImageById(string id)
         {
-            var values = await _productImageService.GetByIdProductImageAsync(productId);
+            var values = await _productImageService.GetByIdProductImageAsync(id);
             return Ok(values);
         }
         [HttpPost]
@@ -48,6 +48,13 @@ namespace MultiShop.Catalog.Controllers
         {
             await _productImageService.DeleteProductImageAsync(id);
             return Ok();
+        }
+
+        [HttpGet("GetProductImageForProductById")]
+        public async Task<IActionResult> GetProductImageForProductById(string id)
+        {
+            var values = await _productImageService.GetProductImageForProductById(id);
+            return Ok(values);
         }
     }
 }

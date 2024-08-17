@@ -34,6 +34,12 @@ namespace MultiShop.Catalog.Controllers
             var values = await _productPreviewService.GetByIdProductPreviewAsync(id);
             return Ok(values);
         }
+        [HttpGet("GetProductDetailForProductId")]
+        public async Task<IActionResult> GetProductDetailForProductId(string id)
+        {
+            var values = await _productPreviewService.GetProductDetailForProductIdAsync(id);
+            return Ok(values);
+        }
         [HttpPut]
         public async Task<IActionResult> UpdateProductPreview(UpdateProductPreviewDto updateProductPreviewDto)
         {
