@@ -1,0 +1,76 @@
+﻿@model List<ResultContactDto>
+@{
+    ViewData["Title"] = "ContactList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Gelen Mesajlar</h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Ana Sayfa</a></li>
+            <li class="active"><i class="fa fa-envelope-o"></i> Tablolar</li>
+            <li class="active"><i class="fa fa-table"></i> İletişim Listesi</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>İletişim Listesi</h4>
+                    <div id="example_filter" class="dataTables_filter pull-right">
+                      
+                    </div>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="sortable">ID</th>
+                                <th class="sortable">Kullanıcı</th>
+                                <th class="sortable">E-Posta</th>
+                                <th class="sortable">Konu</th>
+                                <th class="sortable">Mesaj</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+
+                                <td class="text-truncate">@count</td>
+                                <td class="text-truncate">
+                                    @item.NameSurname
+                                </td>
+                                <td class="text-truncate">
+                                    @item.Email
+                                </td>
+                                <td class="text-truncate">
+                                    @item.Subject
+                                </td>
+                                <td class="text-truncate">
+                                    @item.MessageBody
+                                </td>
+                                <td><a href="/Admin/Contact/DeleteContact/@item.ContactId" class="btn btn-danger">Sil</a></td>
+                            </tr>
+                        }
+
+
+                    </table>
+                    <ul class="pagination m-bot-0">
+                        <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">«</span> </a> </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li> <a href="#" aria-label="Next"> <span aria-hidden="true">»</span> </a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- content -->
+</div>

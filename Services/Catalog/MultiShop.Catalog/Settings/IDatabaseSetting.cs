@@ -14,5 +14,6 @@
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
         public string AboutCollection { get; set; }
+        public string ContactCollection { get; set; }
     }
 }

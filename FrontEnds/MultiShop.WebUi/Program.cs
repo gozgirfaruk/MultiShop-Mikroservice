@@ -1,10 +1,26 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MultiShop.WebUi.Services.CarouselServices;
+using MultiShop.WebUi.Services.LoginServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
+{
+    opt.LoginPath = "/Login/Signin";
+    opt.LogoutPath = "/Login/LogOut";
+    opt.AccessDeniedPath = "/Pages/AccessDenied";
+    opt.Cookie.HttpOnly = true;
+    opt.Cookie.SameSite = SameSiteMode.Strict;
+    opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    opt.Cookie.Name = "MultiShopJwt";
+});
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ILoginService,LoginService>();
+
+
+builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICarouselService, CarouselService>();
 var app = builder.Build();
 
@@ -22,7 +38,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -14,5 +14,6 @@
         public string OfferDiscountCollection { get ; set ; }
         public string BrandCollection { get;  set; }
         public string AboutCollection { get;  set; }
+        public string ContactCollection { get;  set; }
     }
 }
