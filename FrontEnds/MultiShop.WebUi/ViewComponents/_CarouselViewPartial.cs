@@ -14,6 +14,7 @@ namespace MultiShop.WebUi.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
+
             var values = await _carouselService.GetCarouselAsync();
             return View(values);
         }

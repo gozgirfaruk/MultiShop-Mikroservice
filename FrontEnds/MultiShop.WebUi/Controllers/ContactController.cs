@@ -22,6 +22,8 @@ namespace MultiShop.WebUi.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(CreateContactDto createContact)
         {
+
+
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createContact);
             StringContent content = new StringContent(jsonData,Encoding.UTF8,"application/json");

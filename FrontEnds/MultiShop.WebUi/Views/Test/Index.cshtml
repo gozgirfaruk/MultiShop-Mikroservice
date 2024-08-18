@@ -1,0 +1,32 @@
+﻿@model List<ResultCategoryDto>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="container">
+        <br /><br />
+        <table class="table table-bordered">
+            <tr>
+                <th>#</th>
+                <th>Kategori Adı</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CategoryID</td>
+                    <td>@item.CategoryName</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
