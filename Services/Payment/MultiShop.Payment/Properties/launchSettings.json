@@ -1,20 +1,20 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:23764",
-      "sslPort": 44386
+      "applicationUrl": "http://localhost:12268",
+      "sslPort": 44356
     }
   },
   "profiles": {
-    "MultiShop.Catalog": {
+    "MultiShop.Payment": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:7186",
+      "applicationUrl": "http://localhost:7029",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
