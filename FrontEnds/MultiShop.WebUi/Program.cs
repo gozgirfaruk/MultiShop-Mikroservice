@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using MultiShop.WebUi.Handlers;
 using MultiShop.WebUi.Services.CarouselServices;
+using MultiShop.WebUi.Services.CatalogServices.CategoryServices;
 using MultiShop.WebUi.Services.Concrete;
 using MultiShop.WebUi.Services.Interfaces;
 using MultiShop.WebUi.Services.LoginServices;
@@ -30,14 +32,37 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 });
 
 builder.Services.AddHttpContextAccessor();
+
+
 builder.Services.AddScoped<ILoginService,LoginService>();
 builder.Services.AddScoped<ICarouselService, CarouselService>();
 builder.Services.AddHttpClient<IIdentityService, IdentityService>();
+builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 
+
+
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));
+
+var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+
+builder.Services.AddHttpClient<IUserService, UserService>(opt =>
+{
+    opt.BaseAddress = new Uri(values.IdentityServerUrl);
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddAccessTokenManagement();
+builder.Services.AddScoped<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<IClientCredentialTokenService,ClientCredentialTokenService>();
+
+builder.Services.AddHttpClient<ICategoryService, CategoryService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -25,7 +25,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7208
+          "Port": 7207
         }
       ],
       "UpstreamPathTemplate": "/services/order/{everything}",
