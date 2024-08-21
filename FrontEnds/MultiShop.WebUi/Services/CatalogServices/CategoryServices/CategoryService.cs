@@ -1,4 +1,5 @@
 ﻿using MultiShop.DtoLayer.CatalogDtos.CategoryDtos;
+using Newtonsoft.Json;
 
 namespace MultiShop.WebUi.Services.CatalogServices.CategoryServices
 {
@@ -13,7 +14,7 @@ namespace MultiShop.WebUi.Services.CatalogServices.CategoryServices
 
         public async Task CreateCategoryAsync(CreateCategoryDto categoryDto)
         {
-            var responseMessage = await _httpClient.PostAsJsonAsync<CreateCategoryDto>("categories",categoryDto);
+            await _httpClient.PostAsJsonAsync<CreateCategoryDto>("categories",categoryDto);
         }
 
         public async Task DeleteCategoryAsync(string id)
@@ -24,15 +25,16 @@ namespace MultiShop.WebUi.Services.CatalogServices.CategoryServices
         public async Task<List<ResultCategoryDto>> GetAllCategoryAsync()
         {
            var responseMessage =  await _httpClient.GetAsync("categories");
-            var values = await responseMessage.Content.ReadFromJsonAsync<List<ResultCategoryDto>>();
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
             return values;
 
         }
 
-        public async Task<GetByIdCategoryDto> GetByIdCategoryAsync(string id)
+        public async Task<UpdateCategoryDto> GetByIdCategoryAsync(string id)
         {
-            var responseMessage = await _httpClient.GetAsync($"categories/{id}");
-            var values = await responseMessage.Content.ReadFromJsonAsync<GetByIdCategoryDto>();
+            var responseMessage = await _httpClient.GetAsync($"Categories/GetCategoryByID?id={id}");
+            var values = await responseMessage.Content.ReadFromJsonAsync<UpdateCategoryDto>();
             return values;
         }
 

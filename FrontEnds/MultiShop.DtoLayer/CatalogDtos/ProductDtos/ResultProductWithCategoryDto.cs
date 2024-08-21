@@ -14,6 +14,6 @@ namespace MultiShop.DtoLayer.CatalogDtos.ProductDtos
         public decimal Price { get; set; }
         public string ProductImageUrl { get; set; }
         public string CategoryID { get; set; }
-        public ResultCategoryDto Category{ get; set; }
+        public ResultCategoryDto Category { get; set; }
     }
 }
