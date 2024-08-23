@@ -1,20 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.WebUi.Services.CarouselServices;
+using MultiShop.WebUi.Services.CatalogServices.CarouselServices;
+using MultiShop.WebUi.Services.CatalogServices.SpecialOfferServices;
 
 namespace MultiShop.WebUi.ViewComponents
 {
     public class _SpecialOfferViewPartial : ViewComponent
     {
         private readonly ICarouselService _carouselService;
+        private readonly ISpecialOfferService _specialOfferService;
 
-        public _SpecialOfferViewPartial(ICarouselService carouselService)
+        public _SpecialOfferViewPartial(ISpecialOfferService specialOfferService)
         {
-            _carouselService = carouselService;
+            _specialOfferService = specialOfferService;
         }
+
+      
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var values = await _carouselService.GetSpecialOfferListAsync();
+            var values = await _specialOfferService.GetAllSpecialOfferAsync();
             return View(values);
         }
     }

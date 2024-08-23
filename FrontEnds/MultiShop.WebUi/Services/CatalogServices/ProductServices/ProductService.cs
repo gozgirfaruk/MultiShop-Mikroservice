@@ -32,26 +32,39 @@ namespace MultiShop.WebUi.Services.CatalogServices.ProductServices
 
         public async Task<UpdateProductDto> GetByIdProductAsync(string id)
         {
-            var values = await _httpClient.GetAsync($"products/GetProductById?id={id}");
+            //669687ecba5c665a2dc59e42
+
+            var values = await _httpClient.GetAsync($"products/{id}");
             var respon = await values.Content.ReadFromJsonAsync<UpdateProductDto>();
             return respon;
         }
 
+
+
         public async Task<List<ResultProductWithCategoryDto>> GetProductWithCategoryAsync()
         {
-            var responseMessage = await _httpClient.GetAsync("products/ProductListWithCategory");
+            var responseMessage = await _httpClient.GetAsync("products/productlistwithcategory");
             var values = await responseMessage.Content.ReadFromJsonAsync<List<ResultProductWithCategoryDto>>();
             return values;
         }
 
-        public Task<List<ResultProductWithCategoryDto>> GetProductWithCategoryByIdAsync(string CategoryId)
+        public async Task<List<ResultProductWithCategoryDto>> GetProductWithCategoryByIdAsync(string CategoryId)
         {
-            throw new NotImplementedException();
+            var responseMessage = await _httpClient.GetAsync($"products/productlistwithcategorybyid?id={CategoryId}");
+            var values = await responseMessage.Content.ReadFromJsonAsync<List<ResultProductWithCategoryDto>>();
+            return values;
         }
 
-        public async Task UpdateProductAsync(UpdateProductDto productDto)
+        public async Task<GetProductByIdDto> GetProductWithGetDto(string id)
         {
-            await _httpClient.PutAsJsonAsync<UpdateProductDto>("products", productDto);
+            var values = await _httpClient.GetAsync($"products/getproductbyid?id={id}");
+            var respon = await values.Content.ReadFromJsonAsync<GetProductByIdDto>();
+            return respon;
+        }
+
+        public Task UpdateProductAsync(UpdateProductDto updateProductDto)
+        {
+            throw new NotImplementedException();
         }
     }
 }

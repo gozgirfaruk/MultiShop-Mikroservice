@@ -14,12 +14,12 @@ namespace MultiShop.WebUi.Services.CatalogServices.FeatureSlidersServices
 
         public async Task CreateFeatureSliderAsync(CreateFeatureSliderDto createFeatureSlider)
         {
-            await _httpClient.PostAsJsonAsync<CreateFeatureSliderDto>("featuresliders",createFeatureSlider);
+            await _httpClient.PostAsJsonAsync<CreateFeatureSliderDto>("FeatureSliders", createFeatureSlider);
         }
 
         public async Task DeleteFeatureSliderAsync(string id)
         {
-            await _httpClient.DeleteAsync($"featuresliders?id={id}");
+            await _httpClient.DeleteAsync($"FeatureSliders?id={id}");
         }
 
         public Task FeatureSliderChangeStatusToFalse(string id)
@@ -49,7 +49,7 @@ namespace MultiShop.WebUi.Services.CatalogServices.FeatureSlidersServices
 
         public async Task UpdateFeatureSliderAsync(UpdateFeatureSliderDto updateFeatureSlider)
         {
-            await _httpClient.PutAsJsonAsync<UpdateFeatureSliderDto>("featuresliders",updateFeatureSlider);
+            await _httpClient.PutAsJsonAsync<UpdateFeatureSliderDto>("featuresliders", updateFeatureSlider);
         }
     }
 }

@@ -37,13 +37,13 @@
                 <div class="tab-content">
                     @await Component.InvokeAsync("_ProductDetailDescriptionViewPartial", new { id = ViewBag.x })
 
-                    @await Component.InvokeAsync("_ProductDetailInfoViewPartial", new { id = ViewBag.x })
+                    @* @await Component.InvokeAsync("_ProductDetailInfoViewPartial", new { id = ViewBag.x }) *@
 
                    
                     <div class="tab-pane fade" id="tab-pane-3">
                         <div class="row">
-                            @await Component.InvokeAsync("_ProductDetailCommentViewPartial", new { id = ViewBag.x })
-                            @await Html.PartialAsync("/Views/Product/AddComment.cshtml")
+                          @*   @await Component.InvokeAsync("_ProductDetailCommentViewPartial", new { id = ViewBag.x }) *@
+                          @*   @await Html.PartialAsync("/Views/Product/AddComment.cshtml") *@
                            
                         </div>
                     </div>

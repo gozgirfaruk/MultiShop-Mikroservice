@@ -1,7 +1,7 @@
 ﻿using MultiShop.DtoLayer.CatalogDtos.FeatureSliderDtos;
 using MultiShop.DtoLayer.CatalogDtos.SpecialOfferDtos;
 
-namespace MultiShop.WebUi.Services.CarouselServices
+namespace MultiShop.WebUi.Services.CatalogServices.CarouselServices
 {
     public interface ICarouselService
     {
