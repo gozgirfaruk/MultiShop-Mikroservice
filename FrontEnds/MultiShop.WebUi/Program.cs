@@ -16,6 +16,8 @@ using MultiShop.WebUi.Services.LoginServices;
 using MultiShop.WebUi.Settings;
 using MultiShop.WebUi.Services.CatalogServices.ProductImageServices;
 using MultiShop.WebUi.Services.CatalogServices.ProductPreviewServices;
+using MultiShop.WebUi.Services.CommentServices;
+using MultiShop.WebUi.Services.CatalogServices.ContactServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -116,6 +118,21 @@ builder.Services.AddHttpClient<IProductPreviewService, ProductPreviewService>(op
 {
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<ICommentService, CommentService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Comment.Path}");
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<IContactService, ContactService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+
+
+
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

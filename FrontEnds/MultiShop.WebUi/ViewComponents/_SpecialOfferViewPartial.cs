@@ -6,7 +6,6 @@ namespace MultiShop.WebUi.ViewComponents
 {
     public class _SpecialOfferViewPartial : ViewComponent
     {
-        private readonly ICarouselService _carouselService;
         private readonly ISpecialOfferService _specialOfferService;
 
         public _SpecialOfferViewPartial(ISpecialOfferService specialOfferService)
