@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using MultiShop.Discount.Dtos;
 using MultiShop.Discount.Services;
 
@@ -10,10 +9,10 @@ namespace MultiShop.Discount.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class CouponsContoller : ControllerBase
+    public class CouponsController : ControllerBase
     {
         private readonly ICouponService _couponService;
-        public CouponsContoller(ICouponService couponService)
+        public CouponsController(ICouponService couponService)
         {
             _couponService = couponService;
         }
@@ -46,6 +45,13 @@ namespace MultiShop.Discount.Controllers
         public async Task<IActionResult> GetCouponById(int id)
         {
             var value = await _couponService.GetCouponById(id);
+            return Ok(value);
+        }
+
+        [HttpGet("GetCodeDetail")]
+        public async Task<IActionResult> GetCodeDetail(string code)
+        {
+            var value = await _couponService.GetCodeDetail(code);
             return Ok(value);
         }
     }

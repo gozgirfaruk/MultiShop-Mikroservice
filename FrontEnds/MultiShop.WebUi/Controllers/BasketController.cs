@@ -2,6 +2,7 @@
 using MultiShop.DtoLayer.BasketDtos;
 using MultiShop.WebUi.Services.BasketServices;
 using MultiShop.WebUi.Services.CatalogServices.ProductServices;
+using MultiShop.WebUi.Services.DiscountServices;
 
 namespace MultiShop.WebUi.Controllers
 {
@@ -15,9 +16,10 @@ namespace MultiShop.WebUi.Controllers
             _productService = productService;
             _basketService = basketService;
         }
-
         public async Task<IActionResult> ShoppingCart()
         {
+            var values = await _basketService.GetBasketList();
+            ViewBag.ShoppingCart = values.TotalPrice;
             return View();
 
         }
