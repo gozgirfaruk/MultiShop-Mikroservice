@@ -18,6 +18,7 @@ using MultiShop.WebUi.Services.CatalogServices.ProductImageServices;
 using MultiShop.WebUi.Services.CatalogServices.ProductPreviewServices;
 using MultiShop.WebUi.Services.CommentServices;
 using MultiShop.WebUi.Services.CatalogServices.ContactServices;
+using MultiShop.WebUi.Services.BasketServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -129,7 +130,10 @@ builder.Services.AddHttpClient<IContactService, ContactService>(opt =>
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
-
+builder.Services.AddHttpClient<IBasketService, BasketService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Basket.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 
 
