@@ -1,4 +1,5 @@
-﻿using MultiShop.OrderApplication.Features.CQRS.Commands.AddressCommands;
+﻿using AutoMapper;
+using MultiShop.OrderApplication.Features.CQRS.Commands.AddressCommands;
 using MultiShop.OrderApplication.Interfaces;
 using MultiShop.OrderDomain.Entities;
 using System;
@@ -12,20 +13,17 @@ namespace MultiShop.OrderApplication.Features.CQRS.Handlers.AddressHandlers
     public class UpdateAddressCommandHandler
     {
         private readonly IRepository<Address> _repository;
-
-        public UpdateAddressCommandHandler(IRepository<Address> repository)
+        private readonly IMapper _mapper;
+        public UpdateAddressCommandHandler(IRepository<Address> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task Handle(UpdateAddressCommand command)
         {
-            var value = await _repository.GetByIdAsync(command.AddressID);
-            value.Detail = command.Detail;
-            value.Disctrict = command.Disctrict;
-            value.City = command.City;
-            value.UserID = command.UserID;
-            await _repository.UpdateAsync(value);
+            var values = _mapper.Map<Address>(command);
+           await _repository.UpdateAsync(values);
         }
     }
 }

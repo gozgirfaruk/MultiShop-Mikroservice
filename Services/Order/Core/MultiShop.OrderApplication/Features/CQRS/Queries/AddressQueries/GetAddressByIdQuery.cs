@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MediatR;
+using MultiShop.OrderApplication.Features.CQRS.Results.AddressResults;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace MultiShop.OrderApplication.Features.CQRS.Queries.AddressQueries
 {
-    public class GetAddressByIdQuery
+    public class GetAddressByIdQuery : IRequest<GetAddressByIdQueryResult>
     {
-        public int ID{ get; set; }
+        public int Id{ get; set; }
 
-        public GetAddressByIdQuery(int iD)
+        public GetAddressByIdQuery(int id)
         {
-            ID = iD;
+            Id = id;
         }
     }
 }

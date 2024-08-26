@@ -1,4 +1,6 @@
-﻿using MultiShop.OrderApplication.Features.CQRS.Queries.AddressQueries;
+﻿using AutoMapper;
+using MediatR;
+using MultiShop.OrderApplication.Features.CQRS.Queries.AddressQueries;
 using MultiShop.OrderApplication.Features.CQRS.Results.AddressResults;
 using MultiShop.OrderApplication.Interfaces;
 using MultiShop.OrderDomain.Entities;
@@ -10,26 +12,26 @@ using System.Threading.Tasks;
 
 namespace MultiShop.OrderApplication.Features.CQRS.Handlers.AddressHandlers
 {
-    public class GetAddressByIdQueryHandler
+    public class GetAddressByIdQueryHandler : IRequestHandler<GetAddressByIdQuery, GetAddressByIdQueryResult>
     {
+
+        private readonly IMapper _mapper;
         private readonly IRepository<Address> _repository;
 
-        public GetAddressByIdQueryHandler(IRepository<Address> repository)
+        public GetAddressByIdQueryHandler(IMapper mapper, IRepository<Address> repository)
         {
+            _mapper = mapper;
             _repository = repository;
         }
 
-        public async Task<GetAddressByIdQueryResult> Handle(GetAddressByIdQuery query)
+        public async Task<GetAddressByIdQueryResult> Handle(GetAddressByIdQuery request, CancellationToken cancellationToken)
         {
-            var values = await _repository.GetByIdAsync(query.ID);
-            return new GetAddressByIdQueryResult
-            {
-                AddressID = values.AddressID,
-                City = values.City,
-                Detail = values.Detail,
-                Disctrict = values.Disctrict,
-                UserID = values.UserID
-            };
+            var values = await _repository.GetByIdAsync(request.Id);
+            return _mapper.Map<GetAddressByIdQueryResult>(values);
         }
+
+
     }
+
+
 }

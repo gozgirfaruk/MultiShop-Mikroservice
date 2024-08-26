@@ -20,6 +20,8 @@ using MultiShop.WebUi.Services.CommentServices;
 using MultiShop.WebUi.Services.CatalogServices.ContactServices;
 using MultiShop.WebUi.Services.BasketServices;
 using MultiShop.WebUi.Services.DiscountServices;
+using MultiShop.WebUi.Services.OrderServices.AdressService;
+using MultiShop.WebUi.Services.OrderServices.OrderingServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -141,6 +143,15 @@ builder.Services.AddHttpClient<IDiscountService, DiscountService>(opt =>
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Discount.Path}");
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
+builder.Services.AddHttpClient<IAddressService, AddressService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Order.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<IOrderingService, OrderingService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Order.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

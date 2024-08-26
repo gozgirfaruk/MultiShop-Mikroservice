@@ -16,13 +16,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     opt.RequireHttpsMetadata = false; 
 });
 
-#region Address
-builder.Services.AddScoped<GetAddressByIdQueryHandler>();
-builder.Services.AddScoped<GetAddressQueryHandler>();
-builder.Services.AddScoped<CreateAddressCommandHandler>();
-builder.Services.AddScoped<UpdateAddressCommandHandler>();
-builder.Services.AddScoped<RemoveAddressCommandHandler>();
-#endregion
+
 
 #region OrderDetail
 builder.Services.AddScoped<GetOrderDetailQueryHandler>();
@@ -34,11 +28,13 @@ builder.Services.AddScoped<CreateOrderDetailCommandHandler>();
 
 
 builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
+builder.Services.AddScoped(typeof(IOrderingRepository),typeof(OrderingRepository));
 builder.Services.AddApplicationService(builder.Configuration);
 
 builder.Services.AddDbContext<OrderContext>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
