@@ -22,6 +22,8 @@ using MultiShop.WebUi.Services.BasketServices;
 using MultiShop.WebUi.Services.DiscountServices;
 using MultiShop.WebUi.Services.OrderServices.AdressService;
 using MultiShop.WebUi.Services.OrderServices.OrderingServices;
+using MultiShop.WebUi.Services.MessageServices;
+using MultiShop.WebUi.Services.UserIdentityServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,6 +66,11 @@ builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection(
 var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 
 builder.Services.AddHttpClient<IUserService, UserService>(opt =>
+{
+    opt.BaseAddress = new Uri(values.IdentityServerUrl);
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<IUserIdentityService, UserIdentityService>(opt =>
 {
     opt.BaseAddress = new Uri(values.IdentityServerUrl);
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
@@ -153,6 +160,11 @@ builder.Services.AddHttpClient<IOrderingService, OrderingService>(opt =>
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Order.Path}");
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
+builder.Services.AddHttpClient<IMessageService, MessageService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Message.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -171,7 +183,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=HomePage}/{id?}");
 
 app.UseEndpoints(endpoints =>
 {

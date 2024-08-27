@@ -126,6 +126,24 @@
         "AllowedScopes": [ "PaymentFullPermission" ]
       }
     },
+    //Message
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7203
+        }
+      ],
+      "UpstreamPathTemplate": "/services/message/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+        "AllowedScopes": [ "MessageFullPermission" ]
+      }
+    },
     //Images
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -144,6 +162,7 @@
         "AllowedScopes": [ "ImageFullPermission" ]
       }
     }
+
 
   ],
   "GlobalConfiguration": {
