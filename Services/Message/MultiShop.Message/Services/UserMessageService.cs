@@ -55,5 +55,11 @@ namespace MultiShop.Message.Services
             return _mapper.Map<GetMessageByIdDto>(values);
 
         }
+
+        public async Task<int> GetTotalMessageCount()
+        {
+            var values = await _context.UserMessages.CountAsync();
+            return values;
+        }
     }
 }
