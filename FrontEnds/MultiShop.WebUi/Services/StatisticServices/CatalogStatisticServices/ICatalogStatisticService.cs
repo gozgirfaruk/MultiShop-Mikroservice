@@ -1,6 +1,6 @@
-﻿namespace MultiShop.Catalog.Services.StatisticServices
+﻿namespace MultiShop.WebUi.Services.StatisticServices.CatalogStatisticServices
 {
-    public interface IStatisticService
+    public interface ICatalogStatisticService
     {
         Task<long> GetCategoryCount();
         Task<long> GetProductCount();
