@@ -22,6 +22,13 @@ namespace MultiShop.WebUi.Services.CommentServices
             await _httpClient.DeleteAsync($"comments?id={id}");
         }
 
+        public async Task<int> GetActiveCommentCount()
+        {
+            var responseMessage = await _httpClient.GetAsync("comments/GetActiveCommentCount");
+            var values = await responseMessage.Content.ReadFromJsonAsync<int>();
+            return values;
+        }
+
         public async Task<List<ResultCommentDto>> GetAllCommentAsync()
         {
             var values = await _httpClient.GetAsync("comments");
@@ -43,6 +50,20 @@ namespace MultiShop.WebUi.Services.CommentServices
             var jsonData = await values.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<GetCommentById>>(jsonData);
             return result;
+        }
+
+        public async Task<int> GetPassiveCommentCount()
+        {
+            var responseMessage = await _httpClient.GetAsync("comments/GetPassiveCommentCount");
+            var values = await responseMessage.Content.ReadFromJsonAsync<int>();
+            return values;
+        }
+
+        public async Task<int> GetTotalCommentCount()
+        {
+            var responseMessage = await _httpClient.GetAsync("comments/GetCommentCount");
+            var values = await responseMessage.Content.ReadFromJsonAsync<int>();
+            return values;
         }
 
         public async Task UpdateCommentAsync(UpdateCommentDto updateCommentDto)

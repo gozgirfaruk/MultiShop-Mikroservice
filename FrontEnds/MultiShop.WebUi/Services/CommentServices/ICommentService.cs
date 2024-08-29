@@ -10,5 +10,11 @@ namespace MultiShop.WebUi.Services.CommentServices
         Task<GetCommentById> GetCommentByIdAsync(int id);   
         Task CreateCommentAsync(CreateCommentDto createCommentDto);
         Task<List<GetCommentById>> GetCommentForProductId(string id);
+
+        Task<int> GetTotalCommentCount();
+        Task<int> GetActiveCommentCount();
+        Task<int> GetPassiveCommentCount();
+
+
     }
 }

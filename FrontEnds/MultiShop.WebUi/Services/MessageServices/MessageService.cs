@@ -27,5 +27,12 @@ namespace MultiShop.WebUi.Services.MessageServices
             var values = JsonConvert.DeserializeObject<List<ResultSendboxDto>>(jsonData);
             return values;
         }
+
+        public async Task<int> GetTotalMessageCount()
+        {
+            var value = await _httpClient.GetAsync("usermessage/GetTotalMessageCount");
+            var result = await value.Content.ReadFromJsonAsync<int>();
+            return result;
+        }
     }
 }
