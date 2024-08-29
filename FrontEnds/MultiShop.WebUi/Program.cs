@@ -26,6 +26,7 @@ using MultiShop.WebUi.Services.MessageServices;
 using MultiShop.WebUi.Services.UserIdentityServices;
 using MultiShop.WebUi.Services.StatisticServices.CatalogStatisticServices;
 using MultiShop.WebUi.Services.StatisticServices.UserStatisticServices;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,7 +61,14 @@ builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddLocalization(opt =>
+{
+    opt.ResourcesPath = "Resources";
+});
+builder.Services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 
+var supportCultures = new[] { "tr", "en" };
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportCultures[0]).AddSupportedCultures(supportCultures).AddSupportedUICultures(supportCultures);
 
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));
@@ -184,7 +192,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseRequestLocalization(localizationOptions);
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
