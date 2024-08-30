@@ -1,8 +1,34 @@
 # 🛒MultiShop / E-Ticaret Mikroservis Projesi
 ## 🔭Proje Hakkında
+MultiShop projesi, alışverış yapmayı seven ve en iyi ürünlere kolayca ulaşmak isteyen tüm kullanıcılar için tasarlanmıştır. Farklı markalara ait geniş ürün yelpazesini ile kullanıcılara özel kampanyalar ve indirim kuponları sunar. Kullanıcılar, kişisel profillerini oluşturarak favori ürünlerini sepetlerine ekleyebilir ve kolayca sipariş verebilirler. Kullancıların alışveriş süresince kullanıcı geri bildirimine dayalı olarak optimize edilmiş, gelişmiş admin paneli ile tüm süreçler kolayca yönetilebilir hale getirilmiştir.
 
+### Kullanılan Teknolojiler
+* Asp.Net Core 6.0
+* Asp.Net Core WebApi
+* Dbeaver
+* Entity Framework
+* Dapper
+* Onion Arch.
+* N-Tier Arc.
+* Cqrs Design Pattern
+* Mediator Design Pattern
+* Repository Design Pattern
+* Ocelot Gateway
+* Json Web Token
+* Fluent Validation
 
-
+### Mikroservisler ve Teknolojiler
+* Basket - Docker Redis
+* Cargo - Docker MsSql
+* Catalog - MongoDb
+* Comment - Docker MsSql
+* Discount - Local MsSql Dapper ORM
+* Images - Local MsSql
+* Message - Docker MsSql
+* IdentityServer4 - Docker MsSql
+* RabbitMq
+* SignalR
+* RapidApi
 
 
 
