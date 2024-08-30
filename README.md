@@ -17,7 +17,7 @@ MultiShop projesi, alışverış yapmayı seven ve en iyi ürünlere kolayca ula
 * Json Web Token
 * Fluent Validation
 
-### Mikroservisler ve Teknolojiler
+### Mikroservisler ve Veritabanları
 * Basket - Docker Redis
 * Cargo - Docker MsSql
 * Catalog - MongoDb
@@ -29,10 +29,6 @@ MultiShop projesi, alışverış yapmayı seven ve en iyi ürünlere kolayca ula
 * RabbitMq
 * SignalR
 * RapidApi
-
-
-
-
 
 ## 🖼️Projeye Ait Görseller
 ![Screenshot_2](https://github.com/user-attachments/assets/110386da-ec9d-4289-9277-a9684910c5d1)
