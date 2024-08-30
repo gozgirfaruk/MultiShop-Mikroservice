@@ -24,8 +24,8 @@ MultiShop projesi, alışverış yapmayı seven ve en iyi ürünlere kolayca ula
 * Comment - Docker MsSql
 * Discount - Local MsSql Dapper ORM
 * Images - Local MsSql
-* Message - Docker MsSql
-* IdentityServer4 - Docker MsSql
+* Message - PostgreSql
+* IdentityServer4 -Docker MsSql
 * RabbitMq
 * SignalR
 * RapidApi
